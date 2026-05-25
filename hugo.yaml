@@ -1,0 +1,133 @@
+baseURL: "https://wwwombat.com/"
+locale: "en-us"
+title: "WWWOMBAT"
+theme: "PaperMod"
+paginate: 10
+
+# Build settings
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+enableEmoji: true
+
+# Minify output for production
+minify:
+  disableXML: true
+  minifyOutput: true
+
+# Taxonomy
+taxonomies:
+  tag: tags
+  category: categories
+
+params:
+  # Site metadata
+  description: "Private AI infrastructure & security research from the lab."
+  author: "wwwombat"
+  env: production
+
+  # Theme / appearance
+  defaultTheme: dark
+  disableThemeToggle: false
+  ShowReadingTime: true
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowWordCount: false
+  ShowRssButtonInSectionTermList: true
+  UseHugoToc: true
+  disableSpecial1stPost: false
+  disableScrollToTop: false
+  hidemeta: false
+  hideSummary: false
+  showtoc: true
+  tocopen: false
+
+  # Home page - profile mode
+  profileMode:
+    enabled: true
+    title: "WWWOMBAT TECHNOLOGY"
+    subtitle: "Private AI infrastructure & security research from the lab."
+    imageUrl: "/images/wwwombat-logo.png"
+    imageWidth: 160
+    imageHeight: 160
+    imageTitle: "WWWOMBAT"
+    buttons:
+      - name: "Blog"
+        url: "/posts/"
+      - name: "The Lab"
+        url: "/lab/"
+      - name: "Tools & Projects"
+        url: "/projects/"
+      - name: "About"
+        url: "/about/"
+
+  # Social / metadata icons
+  socialIcons:
+    - name: github
+      url: "https://github.com/wwwombat"
+    - name: rss
+      url: "/index.xml"
+
+  # Search
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
+
+  # SEO / open graph
+  images: ["/images/wwwombat-og.png"]
+
+  # Code block styling
+  assets:
+    disableHLJS: true  # Use Hugo's built-in Chroma highlighter
+
+# Syntax highlighting (Chroma)
+markup:
+  highlight:
+    anchorLineNos: false
+    codeFences: true
+    guessSyntax: true
+    lineNos: false
+    noClasses: false
+    style: dracula
+  goldmark:
+    renderer:
+      unsafe: false  # Keep safe by default
+
+# Output formats for search
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+# Main navigation menu
+menu:
+  main:
+    - identifier: posts
+      name: "Blog"
+      url: /posts/
+      weight: 10
+    - identifier: lab
+      name: "The Lab"
+      url: /lab/
+      weight: 20
+    - identifier: projects
+      name: "Projects"
+      url: /projects/
+      weight: 30
+    - identifier: about
+      name: "About"
+      url: /about/
+      weight: 40
+    - identifier: search
+      name: "Search"
+      url: /search/
+      weight: 50

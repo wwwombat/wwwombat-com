@@ -1,0 +1,51 @@
+# Deploy wwwombat.com to Cloudflare Pages on every push to main
+# 
+# Required GitHub Secrets:
+#   CLOUDFLARE_API_TOKEN  - API token with Cloudflare Pages edit permissions
+#   CLOUDFLARE_ACCOUNT_ID - Your Cloudflare account ID
+#
+# First-time setup:
+#   1. Create a Cloudflare Pages project named "wwwombat-com" in the dashboard
+#      (or let wrangler create it on first deploy)
+#   2. Generate an API token at https://dash.cloudflare.com/profile/api-tokens
+#      with "Cloudflare Pages: Edit" permissions
+#   3. Add both secrets to your GitHub repo: Settings → Secrets → Actions
+
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true  # PaperMod theme is a submodule
+          fetch-depth: 0    # Full history for .GitInfo and .Lastmod
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Build site
+        run: hugo --minify
+
+      - name: Deploy to Cloudflare Pages
+        if: github.ref == 'refs/heads/main'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy public --project-name=wwwombat-com
