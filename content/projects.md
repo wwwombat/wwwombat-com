@@ -11,6 +11,18 @@ Open-source tools and utilities built during lab operations. Everything here is 
 
 ---
 
+### ATT&CK Mapper
+
+An Open WebUI tool function for querying the MITRE ATT&CK framework from inside a local AI session. Resolves detection strategies and data sources via the v14+ detection-strategy graph — the flat `x_mitre_detection` and `x_mitre_data_sources` fields were removed in v14 and tools that rely on them return empty results silently.
+
+Search uses specificity ranking: exact technique name matches surface above starts-with, which surfaces above contains, which surfaces above description-only. Searching "phishing" returns T1566 first.
+
+**Stack:** Python · MITRE ATT&CK STIX 2.1 · Open WebUI Tool API  
+**Status:** Active · v1.5.0  
+[View on GitHub →](https://github.com/wwwombat/open-webui-security-toolkit)
+
+---
+
 ### NVD CVE Query Tool
 
 A Python utility for querying the NIST National Vulnerability Database API. Includes date-range filtering, proper ISO 8601 timestamp handling, and HTTP/2 compatibility fixes for environments where `h2` causes issues.

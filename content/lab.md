@@ -12,7 +12,7 @@ This page is a living reference architecture for the wwwombat lab — a fully se
 
 The core objective: **zero-cost, 100% private local inference** for processing sensitive data assets like security logs, vulnerability maps, and custom source code — bridged with governed cloud infrastructure only when local VRAM ceilings demand it.
 
-*Last updated: May 2026*
+*Last updated: June 2026*
 
 ## Deployment Topology
 
@@ -60,6 +60,12 @@ Docker Engine with `nvidia-container-runtime` bridging containerized workloads d
 - **Open WebUI** — White-labeled browser interface (WWWOMBAT.tech branding)
 - **SearXNG** — Private metasearch engine for RAG pipelines
 - **Kokoro TTS** — Local text-to-speech synthesis
+
+### Security Analysis Tools
+
+Open WebUI tool functions that extend the local AI stack with structured security intelligence:
+
+- **ATT&CK Mapper** — Queries the MITRE ATT&CK STIX 2.1 bundle. Resolves detection strategies and data sources via the v14+ detection-strategy graph; ranked search by name specificity. Part of `open-webui-security-toolkit`.
 
 ### Edge Access
 
